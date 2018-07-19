@@ -31,6 +31,8 @@ val menu_conSeleccion = """
     Seleccione una opción (1-5)
 """.trimIndent()
 
+
+
 fun main(args: Array<String>) {
 
         while (listas.isEmpty()) {
@@ -52,7 +54,43 @@ fun main(args: Array<String>) {
             println(menu_noSeleccion)
             var opcion = readLine()!!.toInt()
             when (opcion) {
-                1 -> {}
+                1 -> { println("Ingrese el nombre de la lista: ")
+                    val nombre = readLine()!!
+                    val lista = Lista(nombre)
+                    listas.add(lista)
+                    println("Se ha creado la lista con éxito.")
+                }
+
+
+                2 -> {
+                    for (i in listas.indices) {
+                        println("${i + 1} ${listas[1]}" )
+                    }
+                }
+
+                3 -> {
+                    println("Listas:")
+                    for (i in listas.indices) {
+                        println("${i + 1} ${listas[i].nombre}")
+                    }
+
+                    println("Qué lista desea seleccionar? (1-${listas.count()})")
+
+                    var lista_seleccion = readLine()!!.toInt()
+
+                    // Mostrar menu de selección
+                    println(menu_conSeleccion)
+                    var opcion_lista = readLine()!!.toInt()
+
+                    when(opcion_lista){
+
+                    }
+
+
+
+
+
+                }
             }
         } while (!listas.isEmpty())
 
