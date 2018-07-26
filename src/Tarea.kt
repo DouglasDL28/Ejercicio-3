@@ -9,4 +9,11 @@ class Tarea (
         Completo = true
     }
 
+    override fun toString(): String {
+        return """
+            TAREA $Nombre:
+                Completo: $Completo
+        """.trimIndent()
+    }
+
 }

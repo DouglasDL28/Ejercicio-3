@@ -5,15 +5,22 @@ class Lista (
         val tareas: ArrayList<Tarea> = ArrayList()
 
 ) {
-    fun verTareas() {
-        println("Tareas: ")
-        for (i in tareas.indices) {
-         println("${i+1}. ${tareas[i].Nombre} Completo: ${tareas[i].Completo}")
-     }
-
+    fun verTareas(index: Int): Tarea? {
+        return tareas.getOrNull(index)
     }
 
-    fun agregarTarea(tarea: Tarea){
+
+    fun agregarTarea(tarea: Tarea) {
         tareas.add(tarea)
+    }
+
+
+    override fun toString(): String {
+        var strLista = " "
+        tareas.forEachIndexed { index, tarea -> strLista += "${index + 1}: $tarea\n" }
+        return """
+            LISTA DE TAREAS $nombre:
+            $strLista
+        """.trimIndent()
     }
 }

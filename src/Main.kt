@@ -1,6 +1,5 @@
 import modulo.*
 
-var listas: ArrayList<Lista> = ArrayList()
 
 // Menú cuando no existen listas.
 val menu_noLista = """
@@ -34,6 +33,7 @@ val menu_conSeleccion = """
 
 
 fun main(args: Array<String>) {
+    var listas: ArrayList<Lista> = ArrayList()
 
         while (listas.isEmpty()) {
             println(menu_noLista)
@@ -44,8 +44,8 @@ fun main(args: Array<String>) {
                 1 -> {
                     println("Ingrese el nombre de la lista: ")
                     val nombre = readLine()!!
-                    val lista = Lista(nombre)
-                    listas.add(lista)
+                    val nueva_lista = Lista(nombre)
+                    listas.add(nueva_lista)
                 }
             }
         }
@@ -54,35 +54,60 @@ fun main(args: Array<String>) {
             println(menu_noSeleccion)
             var opcion = readLine()!!.toInt()
             when (opcion) {
+                //Crear una lista
                 1 -> { println("Ingrese el nombre de la lista: ")
                     val nombre = readLine()!!
-                    val lista = Lista(nombre)
-                    listas.add(lista)
+                    val nueva_lista = Lista(nombre)
+                    listas.add(nueva_lista)
                     println("Se ha creado la lista con éxito.")
                 }
 
-
+                // Ver las listas
                 2 -> {
                     for (i in listas.indices) {
-                        println("${i + 1} ${listas[1]}" )
+                        println("${i + 1} ${listas[i]}" )
                     }
                 }
 
+                //Seleccionar lista.
                 3 -> {
-                    println("Listas:")
+                    println("Listas: ")
                     for (i in listas.indices) {
                         println("${i + 1} ${listas[i].nombre}")
                     }
 
                     println("Qué lista desea seleccionar? (1-${listas.count()})")
 
-                    var lista_seleccion = readLine()!!.toInt()
+                    var lista_seleccion = readLine()!!.toInt() - 1
 
                     // Mostrar menu de selección
                     println(menu_conSeleccion)
                     var opcion_lista = readLine()!!.toInt()
 
                     when(opcion_lista){
+                        // Deseleccionar lista
+                        1 -> {}
+
+                        //Agregar una tarea
+                        2 -> {
+                            val titulo = readLine()!!
+                            val nueva_tarea = Tarea(titulo)
+                            listas[lista_seleccion].agregarTarea(nueva_tarea)
+
+                            println("La tarea se ha agregado a la lista con éxito.")
+                        }
+
+                        //Completar una tarea
+                        3 -> {for (i in listas[lista_seleccion].tareas.indices) {
+                            println("""
+                                ${i + 1}
+                            """.trimIndent())
+                        }
+                            println("Que ")
+                        }
+
+                        // Ver todas las tareas en una lista.
+                        4 -> {}
 
                     }
 
